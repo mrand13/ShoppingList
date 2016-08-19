@@ -2,11 +2,16 @@ package com.mrand13.shoppinglist;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mrand13.shoppinglist.adapters.ShoppingListAdapter;
+import com.mrand13.shoppinglist.fragments.ShoppingListFragment;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +39,18 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void initShoppingListFragment(){
+        if(findViewById(R.id.content_frame) != null){
+            //Create a new fragment
+            ShoppingListFragment fragment = new ShoppingListFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_frame,fragment,ShoppingListFragment.TAG);
+            transaction.addToBackStack(ShoppingListFragment.TAG);
+            transaction.commit();
+            getSupportFragmentManager().executePendingTransactions();
+        }
     }
 }
