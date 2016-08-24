@@ -78,22 +78,21 @@ public class Item {
         return mName;
     }
 
-    public double getPrice(){
-        return mPrice;
-    }
+    public double getPrice(){return (mQuantity>1)? mPrice * mQuantity : mPrice;}
 
     public int getQuantity(){
         return mQuantity;
     }
 
-    @Item.Category
+    @Category
     public String getCategory(){
         return mCategory;
     }
 
+
     //To String Helpers
     //----------------------------
     public String getPriceToString(){
-        return String.format("%.2f",mPrice);
+        return "$" + String.format("%.2f",getPrice());
     }
 }

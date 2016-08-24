@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.mrand13.shoppinglist.R;
@@ -27,11 +28,18 @@ public class ShoppingListAdapter extends ArrayAdapter<Item> {
         //Initialize the views
         TextView label = (TextView)convertView.findViewById(R.id.shopping_list_item_label);
         TextView price = (TextView)convertView.findViewById(R.id.shopping_list_item_price);
-        TextView quantity = (TextView)convertView.findViewById(R.id.shopping_list_item_quantity);
-
+        CheckBox checkBox = (CheckBox)convertView.findViewById(R.id.shopping_list_item_checkbox);
         label.setText(item.getName());
+        if(item.getQuantity() >1)
+            label.append(" (" + item.getQuantity() + ")");
         price.setText(item.getPriceToString());
-        quantity.setText("" + item.getQuantity());
         return convertView;
+    }
+
+    public double getTotal(){
+        double total = 0.0;
+        for(int i = 0; i<this.getCount(); i++)
+            total += this.getItem(i).getPrice();
+        return total;
     }
 }
