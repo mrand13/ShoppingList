@@ -16,10 +16,7 @@ import com.mrand13.shoppinglist.models.Item;
 import com.mrand13.shoppinglist.models.ShoppingList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //Callback Listeners
